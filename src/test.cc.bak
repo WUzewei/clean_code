@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include "student_manager.h"
+
+int main()
+{
+    Student  *s1 = new Student();
+    s1->setStudentID(1);
+	string name = "zhangsan";
+    s1->setStudentName(name);
+    s1->setStudentAge(18);
+    s1->setStudentGrade(5);
+    s1->setStudentClass(6);
+    s1->setStudentSex(1);
+	string  email = "zhangsan@123.com";
+    s1->setStudentFamilyEmail(email);
+	string  addr = "169 laoshan qingdao";
+    s1->setStudentFamilyAddress(addr);
+
+	clubsVec clubs;
+	clubs.push_back(CLUB_READING);
+	clubs.push_back(CLUB_DRAMA);
+	s1->setStudentClubs(clubs);
+
+	courseScoreMap courseScore;
+	courseScore.insert(pair<Course, float>(COURSE_CHINESE, 99.99));
+	courseScore.insert(pair<Course, float>(COURSE_MATH, 89.99));
+	courseScore.insert(pair<Course, float>(COURSE_ENGLISH, 79.99));
+	courseScore.insert(pair<Course, float>(COURSE_PHYSICAL, 120));
+	courseScore.insert(pair<Course, float>(COURSE_CHEMICAL,100));
+	courseScore.insert(pair<Course, float>(COURSE_HISTORICAL, 150));
+	courseScore.insert(pair<Course, float>(COURSE_GEOGRAPHY, 110));
+	s1->setStudentCourseScore(courseScore);
+
+    StudentMgr::getInstance().insertStudentRecord(s1);
+    StudentMgr::getInstance().printAllStudentsBasicInfo();
+
+	printf("\n");
+	
+	string new_email = "zsan@nokia-sbell.com";
+	s1->setStudentFamilyEmail(new_email);	
+	StudentMgr::getInstance().updateStudentRecord(s1);
+	StudentMgr::getInstance().printAllStudentsBasicInfo();
+
+	Student *s2;
+	bool find = StudentMgr::getInstance().searchStudentRecord(1, s2);
+	if (find && (s2 != NULL))
+		StudentMgr::getInstance().printStudentClubsInfo(s2);
+		StudentMgr::getInstance().printStudentCourseScoreInfo(s2);
+
+	Student *s3 = new Student();
+	s3->setStudentID(3);
+	s3->setStudentName("lisi");
+	s3->setStudentAge(21);
+	s3->setStudentGrade(5);
+	s3->setStudentClass(6);
+	s3->setStudentSex(0);
+	s3->setStudentFamilyEmail("lisi@nokia.com");
+	s3->setStudentFamilyAddress("zhong guan cun");
+
+	clubs.clear();
+	clubs.push_back(CLUB_MATH);
+	s3->setStudentClubs(clubs);
+	courseScore.clear();
+	courseScore.insert(pair<Course, float>(COURSE_CHINESE, 100));
+	courseScore.insert(pair<Course, float>(COURSE_MATH, 89));
+	courseScore.insert(pair<Course, float>(COURSE_ENGLISH, 90));
+	s3->setStudentCourseScore(courseScore);
+
+	StudentMgr::getInstance().insertStudentRecord(s3);
+	studentsMap students;
+	students = StudentMgr::getInstance().getStudentsFromClass(6);
+	studentsMap::iterator student = students.begin();
+	for(; student != students.end(); student++)
+	{
+		StudentMgr::getInstance().printStudentBasicInfo(&student->second);
+		StudentMgr::getInstance().printStudentClubsInfo(&student->second);
+		StudentMgr::getInstance().printStudentCourseScoreInfo(&student->second);
+	}
+	
+	return 0;    
+
+}
+
