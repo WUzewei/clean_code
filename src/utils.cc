@@ -2,10 +2,10 @@
 
 string getCourseName(Course course)
 {
-	string course_name;
+    string course_name;
 
-	switch(course)
-	{
+    switch(course)
+    {
     case COURSE_CHINESE:
         course_name = "Chinese";
         break;
@@ -30,17 +30,17 @@ string getCourseName(Course course)
     default:
         course_name = "Other";
         break;
-	}	
-	
-	return course_name;       
+    }
+
+    return course_name;
 }
 
 string getClubName(Club club)
 {
-	string club_name;
+    string club_name;
 
-	switch(club)
-	{
+    switch(club)
+    {
     case CLUB_READING:
         club_name = "reading";
         break;
@@ -53,8 +53,47 @@ string getClubName(Club club)
     default:
         club_name = "other";
         break;
-	}
+    }
 
-	return club_name;
+    return club_name;
+}
+
+string getGradeStr(Grade grade)
+{
+    string grade_str;
+    switch(grade)
+    {
+    case GRADE_ONE:
+        grade_str = "Grade One";
+        break;
+    case GRADE_TWO:
+        grade_str = "Grade Two";
+        break;
+    case GRADE_THREE:
+        grade_str = "Grade Three";
+        break;
+    case GRADE_FOUR:
+        grade_str = "Grade Four";
+        break;
+    case GRADE_FIVE:
+        grade_str = "Grade Five";
+        break;
+    case GRADE_SIX:
+        grade_str = "Grade Six";
+        break;
+    case GRADE_SEVEN:
+        grade_str = "Junior Grade One";
+        break;
+    case GRADE_EIGHT:
+        grade_str = "Junior Grade Two";
+        break;
+    case GRADE_NINE:
+        grade_str = "Junior Grade Three";
+        break;
+    default:
+        grade_str = "";
+        break;
+    }
+    return grade_str;
 }
 

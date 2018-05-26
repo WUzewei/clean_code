@@ -10,6 +10,11 @@ typedef unsigned char uint8;
 typedef unsigned int  uint32;
 
 typedef enum{
+	MALE,
+	FEMALE
+}Gender;
+
+typedef enum{
 	CLUB_READING,
 	CLUB_DRAMA,
 	CLUB_MATH

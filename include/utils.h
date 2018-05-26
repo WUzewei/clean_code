@@ -6,5 +6,6 @@
 
 string getCourseName(Course course);
 string getClubName(Club club);
+string getGradeStr(Grade grade);
 
 #endif
